@@ -1,0 +1,8 @@
+<div class="topnav" *ngIf="authenticationService.loggedIn">
+
+    <a routerLink="/artworks" *ngIf="authenticationService.loggedIn">List of artworks</a>
+   <a routerLink="/artworks/create" *ngIf="authenticationService.loggedIn">Create an artwork</a>
+   <a *ngIf="authenticationService.logout()" style="float:right">Logout</a>
+
+</div>
+<router-outlet></router-outlet>

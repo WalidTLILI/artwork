@@ -1,0 +1,188 @@
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="column">
+      <form [formGroup]="form">
+
+        <div fxLayout="row" class="pt-1">
+          <label class="label" fxFlex.gt-sm="40" fxFlex.gt-xs="35"
+                 fxFlex="20" fxLayout="column" fxLayoutAlign="center flex-end">
+                    <span fxLayout="row">
+                      {{'category'}}&nbsp;<span class="color-red">&nbsp;*&nbsp;</span>:
+                    </span>
+          </label>
+          <ngx-select fxFlex.gt-sm="35" fxFlex.gt-xs="45" fxFlex="45"
+                      required
+                      placeholder="Select category"
+                      [items]="categories"
+                      [formControl]="form.controls.category"
+                      [ngClass]="{'required': form.controls.category.hasError('required')
+                                    && form.controls.category.touched}">
+          </ngx-select>
+          <div fxLayout="column">
+            <small *ngIf="form.controls['category'].hasError('required')
+                              && form.controls['category'].touched"
+                   style="margin-top: 1%!important;" class="error-state">
+              {{'this field is required'}}
+            </small>
+
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <label class="label" fxFlex.gt-sm="40" fxFlex.gt-xs="35"
+                 fxFlex="20" fxLayout="column" fxLayoutAlign="center flex-end">
+                    <span fxLayout="row">
+                      {{'title'}}&nbsp;<span class="color-red">&nbsp;*&nbsp;</span>:
+                    </span>
+          </label>
+          <mat-form-field fxFlex.gt-sm="35" fxFlex.gt-xs="45" fxFlex="45">
+            <input matInput placeholder="Type title" [formControl]="form.controls.title">
+          </mat-form-field>
+          <div fxLayout="column">
+            <small
+              *ngIf="form.controls.title.hasError('required') && form.controls.title.touched"
+              class="error-state">{{'this field is required'}}
+            </small>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <label class="label" fxFlex.gt-sm="40" fxFlex.gt-xs="35"
+                 fxFlex="20" fxLayout="column" fxLayoutAlign="center flex-end">
+                    <span fxLayout="row">
+                      {{'publicationDate'}}&nbsp;<span class="color-red">&nbsp;*&nbsp;</span>:
+                    </span>
+          </label>
+          <mat-form-field fxFlex.gt-sm="35" fxFlex.gt-xs="45" fxFlex="45">
+            <input matInput readonly placeholder="Type publication date" [matDatepicker]="picker"
+                   (click)="picker.open()" [formControl]="form.controls.publicationDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div fxLayout="column">
+            <small
+              *ngIf="form.controls.publicationDate.hasError('required')
+                            && form.controls.publicationDate.touched"
+              class="error-state">{{'this field is required'}}
+            </small>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <label class="label" fxFlex.gt-sm="40" fxFlex.gt-xs="35"
+                 fxFlex="20" fxLayout="column" fxLayoutAlign="center flex-end">
+                    <span fxLayout="row">
+                      {{'price'}}&nbsp;<span class="color-red">&nbsp;*&nbsp;</span>:
+                    </span>
+          </label>
+          <mat-form-field fxFlex.gt-sm="35" fxFlex.gt-xs="45" fxFlex="45">
+            <input matInput placeholder="Type price" type="number" [formControl]="form.controls.price">
+          </mat-form-field>
+          <div fxLayout="column">
+            <small
+              *ngIf="form.controls.price.hasError('required') && form.controls.price.touched"
+              class="error-state">{{'this field is required'}}
+            </small>
+          </div>
+        </div>
+
+        <div *ngIf="this.form.controls.category.value === 'newspaper'">
+
+          <div fxLayout="row">
+            <label class="label" fxFlex.gt-sm="40" fxFlex.gt-xs="35"
+                   fxFlex="20" fxLayout="column" fxLayoutAlign="center flex-end">
+                      <span fxLayout="row">
+                        {{'periodicity'}}&nbsp;<span class="color-red">&nbsp;*&nbsp;</span>:
+                      </span>
+            </label>
+            <mat-form-field fxFlex.gt-sm="35" fxFlex.gt-xs="45" fxFlex="45">
+              <input matInput placeholder="Type price" type="number" [formControl]="newspaperForm.controls.periodicity">
+            </mat-form-field>
+            <div fxLayout="column">
+              <small
+                *ngIf="newspaperForm.controls.periodicity.hasError('required')
+                              && newspaperForm.controls.periodicity.touched"
+                class="error-state">{{'this field is required'}}
+              </small>
+            </div>
+          </div>
+
+        </div>
+
+        <div *ngIf="this.form.controls.category.value === 'book'">
+
+          <div fxLayout="row">
+            <label class="label" fxFlex.gt-sm="40" fxFlex.gt-xs="35"
+                   fxFlex="20" fxLayout="column" fxLayoutAlign="center flex-end">
+                      <span fxLayout="row">
+                        {{'author'}}&nbsp;<span class="color-red">&nbsp;*&nbsp;</span>:
+                      </span>
+            </label>
+            <mat-form-field fxFlex.gt-sm="35" fxFlex.gt-xs="45" fxFlex="45">
+              <input matInput placeholder="Type price" [formControl]="bookForm.controls.author">
+            </mat-form-field>
+            <div fxLayout="column">
+              <small
+                *ngIf="bookForm.controls.author.hasError('required')
+                              && bookForm.controls.author.touched"
+                class="error-state">{{'this field is required'}}
+              </small>
+            </div>
+          </div>
+
+          <div fxLayout="row">
+            <label class="label" fxFlex.gt-sm="40" fxFlex.gt-xs="35"
+                   fxFlex="20" fxLayout="column" fxLayoutAlign="center flex-end">
+                      <span fxLayout="row">
+                        {{'isbn'}}&nbsp;<span class="color-red">&nbsp;*&nbsp;</span>:
+                      </span>
+            </label>
+            <mat-form-field fxFlex.gt-sm="35" fxFlex.gt-xs="45" fxFlex="45">
+              <input matInput placeholder="Type price" type="number" [formControl]="bookForm.controls.isbn">
+            </mat-form-field>
+            <div fxLayout="column">
+              <small
+                *ngIf="bookForm.controls.isbn.hasError('required') && bookForm.controls.isbn.touched"
+                class="error-state">{{'this field is required'}}
+              </small>
+            </div>
+          </div>
+
+        </div>
+
+        <div *ngIf="this.form.controls.category.value === 'magazine'">
+
+          <div fxLayout="row">
+            <label class="label" fxFlex.gt-sm="40" fxFlex.gt-xs="35"
+                   fxFlex="20" fxLayout="column" fxLayoutAlign="center flex-end">
+                      <span fxLayout="row">
+                        {{'collection'}}&nbsp;<span class="color-red">&nbsp;*&nbsp;</span>:
+                      </span>
+            </label>
+            <mat-form-field fxFlex.gt-sm="35" fxFlex.gt-xs="45" fxFlex="45">
+              <input matInput placeholder="Type price" [formControl]="magazineForm.controls.collection">
+            </mat-form-field>
+            <div fxLayout="column">
+              <small
+                *ngIf="magazineForm.controls.collection.hasError('required')
+                              && magazineForm.controls.collection.touched"
+                class="error-state">{{'this field is required'}}
+              </small>
+            </div>
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="flex-end center">
+    <button mat-button color="primary" type="submit" (click)="submit()">
+      {{'save'}}</button>
+    <button mat-button color="warn" (click)="form.reset()"> {{'cancel'}}</button>
+  </mat-card-actions>
+
+</mat-card>
+
+

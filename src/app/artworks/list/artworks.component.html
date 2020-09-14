@@ -1,0 +1,10 @@
+<div fxLayout="row">
+  <label class="label" fxFlex.gt-sm="40" fxFlex.gt-xs="35"
+         fxFlex="20" fxLayout="column" fxLayoutAlign="center flex-end">
+    <span fxLayout="row">{{'search'}}:</span>
+  </label>
+  <mat-form-field fxFlex.gt-sm="35" fxFlex.gt-xs="45" fxFlex="45">
+    <input matInput placeholder="Type to filter Title column..." (keyup)="updateFilter($event)"/>
+  </mat-form-field>
+</div>
+<ngx-datatable #artworksTable class='material'></ngx-datatable>
